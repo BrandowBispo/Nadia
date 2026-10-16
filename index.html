@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Reset & Design Tokens Quentes e Acolhedores (Inspirados na Identidade Visual Oficial) */
+    /* Reset & Design Tokens Quentes e Acolhedores */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -80,7 +80,7 @@
       padding: 0;
     }
 
-    /* Container Desktop com Moldura de Alta Densidade */
+    /* Container Desktop com Moldura Suave */
     .app-wrapper {
       width: 100%;
       min-height: 100vh;
@@ -117,7 +117,7 @@
       }
     }
 
-    /* Top Bar Flutuante com Efeito Glass e Toque Pêssego */
+    /* Top Bar Flutuante */
     .top-bar {
       position: sticky;
       top: 0;
@@ -203,7 +203,6 @@
       transform: scale(1.03);
     }
 
-    /* Selo / Bag Flutuante junto à Foto */
     .avatar-mini-bag {
       position: absolute;
       bottom: -2px;
@@ -251,7 +250,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .profile-handle {
@@ -265,6 +264,38 @@
       align-items: center;
       justify-content: center;
       color: var(--primary-orange);
+    }
+
+    /* Ícone do Instagram no Local Correto com Estilização Oficial */
+    .social-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #E1306C;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(225, 48, 108, 0.25);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(225, 48, 108, 0.1);
+      transition: var(--transition-smooth);
+    }
+
+    .social-btn:hover {
+      transform: scale(1.12);
+      color: #FFFFFF;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(225, 48, 108, 0.35);
     }
 
     /* Frase Manuscrita da Arte: "Tudo o que você ama..." */
@@ -304,20 +335,20 @@
       margin-bottom: 16px;
     }
 
-    /* Os 4 Pilares de Confiança da Imagem (Features Bar) */
+    /* Os 4 Pilares de Confiança ESTÁTICOS (SEM EFEITO) */
     .trust-pillars-grid {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.7);
       border: 1px solid rgba(255, 106, 0, 0.14);
       border-radius: 16px;
       padding: 12px 6px;
       margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(180, 70, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(180, 70, 0, 0.03);
+      pointer-events: none; /* Estático sem efeitos */
+      user-select: none;
     }
 
     .pillar-item {
@@ -338,14 +369,7 @@
       align-items: center;
       justify-content: center;
       color: var(--primary-orange);
-      box-shadow: 0 2px 5px rgba(255, 106, 0, 0.06);
-      transition: var(--transition-smooth);
-    }
-
-    .pillar-item:hover .pillar-icon-box {
-      transform: translateY(-2px);
-      background: var(--primary-orange-light);
-      border-color: var(--primary-orange);
+      box-shadow: 0 2px 5px rgba(255, 106, 0, 0.05);
     }
 
     .pillar-label {
@@ -357,37 +381,6 @@
       letter-spacing: 0.02em;
     }
 
-    /* Redes Sociais */
-    .social-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 4px;
-    }
-
-    .social-btn {
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(255, 106, 0, 0.12);
-      text-decoration: none;
-      transition: var(--transition-smooth);
-    }
-
-    .social-btn:hover {
-      transform: scale(1.12);
-      color: #FFFFFF;
-      background: var(--gradient-orange);
-      border-color: transparent;
-      box-shadow: 0 4px 12px var(--primary-orange-glow);
-    }
-
     /* Container de Links */
     .links-stack {
       display: flex;
@@ -397,7 +390,7 @@
       margin-top: 6px;
     }
 
-    /* Card de Link Reestilizado */
+    /* Card de Link Padrão */
     .link-card {
       position: relative;
       display: flex;
@@ -426,9 +419,9 @@
       transform: translateY(0px) scale(0.99);
     }
 
-    /* Destaque no Card VIP / Principal */
+    /* Card VIP Achadinhos com Setas de Ação */
     .link-card.card-featured {
-      border: 1.5px solid rgba(255, 106, 0, 0.35);
+      border: 1.5px solid rgba(255, 106, 0, 0.4);
       background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F5 100%);
     }
 
@@ -445,9 +438,11 @@
       padding: 2px 10px;
       border-radius: 999px;
       box-shadow: 0 2px 6px var(--primary-orange-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    /* Thumbnail do Link */
     .link-thumb {
       width: 48px;
       height: 48px;
@@ -471,7 +466,6 @@
       color: var(--primary-orange);
     }
 
-    /* Conteúdo do Link */
     .link-content {
       flex: 1;
       display: flex;
@@ -487,6 +481,10 @@
       line-height: 1.3;
       color: var(--text-title);
       letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
     .link-subtitle {
@@ -496,7 +494,30 @@
       font-weight: 500;
     }
 
-    /* Botão de 3 Pontos */
+    /* Botão Circular com Seta no Card dos Achadinhos */
+    .link-arrow-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary-orange-light);
+      border: 1.5px solid rgba(255, 106, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-orange);
+      flex-shrink: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .link-card:hover .link-arrow-circle {
+      background: var(--gradient-orange);
+      color: #FFFFFF;
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px var(--primary-orange-glow);
+      border-color: transparent;
+    }
+
+    /* Botão de 3 Pontos (Demais Cards) */
     .link-menu-btn {
       width: 36px;
       height: 36px;
@@ -519,10 +540,10 @@
       transform: scale(1.08);
     }
 
-    /* Rodapé com o Slogan Oficial da Imagem */
+    /* Rodapé com Slogan Oficial */
     .page-footer {
       margin-top: auto;
-      padding-top: 34px;
+      padding-top: 36px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -549,38 +570,6 @@
     }
 
     .footer-slogan-heart {
-      color: var(--primary-orange);
-      font-size: 0.85rem;
-    }
-
-    /* Assinatura Deerflow Obrigatória e Harmoniosa */
-    .deerflow-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 106, 0, 0.12);
-      transition: var(--transition-smooth);
-    }
-
-    .deerflow-badge:hover {
-      color: var(--primary-orange);
-      background: #FFFFFF;
-      transform: translateY(-1px);
-      border-color: var(--primary-orange);
-      box-shadow: 0 4px 12px var(--primary-orange-glow);
-    }
-
-    .deerflow-sparkle {
       color: var(--primary-orange);
       font-size: 0.85rem;
     }
@@ -885,6 +874,18 @@
           </span>
         </div>
 
+        <!-- Botão Oficial do Instagram no Local Original do Linktree -->
+        <div class="social-links">
+          <a href="https://instagram.com/nadiapancote" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram @nadiapancote" title="Instagram @nadiapancote">
+            <!-- Ícone Nítido e Preciso do Instagram -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+
         <!-- Frase Manuscrita do Design Oficial -->
         <div class="handwritten-sub">Tudo o que você ama, em um só lugar ♡</div>
 
@@ -900,7 +901,7 @@
           <span>BUGS, CUPONS E PROMOÇÕES</span>
         </div>
 
-        <!-- Os 4 Pilares de Confiança da Imagem Oficial -->
+        <!-- Os 4 Pilares de Confiança (Estáticos, sem efeitos ao passar o mouse) -->
         <div class="trust-pillars-grid">
           
           <div class="pillar-item">
@@ -950,22 +951,14 @@
 
         </div>
 
-        <!-- Botão Social do Instagram -->
-        <div class="social-links">
-          <a href="https://instagram.com/nadiapancote" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram de Nádia Pancote" title="Instagram @nadiapancote">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C9.2912 2 8.94131 2 7.86907 2.05643C7.03985 2.07241 6.21934 2.22888 5.44244 2.51919C4.78781 2.77878 4.23476 3.11738 3.67043 3.68172C3.11738 4.23476 2.76749 4.78781 2.51919 5.45372C2.27088 6.08578 2.10158 6.80813 2.05643 7.88036C2.01129 8.94131 2 9.27991 2 12C2 14.7088 2 15.0474 2.05643 16.1196C2.10158 17.1919 2.28217 17.9255 2.51919 18.5576C2.77878 19.2122 3.11738 19.7652 3.67043 20.3296C4.23476 20.8826 4.78781 21.2325 5.44244 21.4808C6.08578 21.7291 6.80813 21.8984 7.86907 21.9436C8.94131 21.9887 9.27991 22 12 22C14.7088 22 15.0474 22 16.1196 21.9436C17.1806 21.8984 17.9142 21.7178 18.5463 21.4808C19.2137 21.2306 19.8184 20.8377 20.3183 20.3296C20.8826 19.7652 21.2212 19.2009 21.4695 18.5576C21.7178 17.9142 21.8871 17.1919 21.9436 16.1196C21.9887 15.0587 22 14.7201 22 12C22 9.2912 21.9887 8.9526 21.9436 7.88036C21.9225 7.05065 21.7622 6.23037 21.4695 5.45372C21.2189 4.78649 20.8261 4.18182 20.3183 3.68172C19.754 3.11738 19.2122 2.77878 18.5463 2.51919C17.7686 2.23315 16.9482 2.08051 16.1196 2.06772C15.0474 2.01129 14.7088 2 12 2ZM12 6.86456C9.16345 6.86456 6.86456 9.16345 6.86456 12C6.86456 14.8365 9.16345 17.1354 12 17.1354C14.8365 17.1354 17.1354 14.8365 17.1354 12C17.1354 9.16345 14.8365 6.86456 12 6.86456ZM12 8.67043C13.839 8.67043 15.3296 10.161 15.3296 12C15.3296 13.839 13.839 15.3296 12 15.3296C10.161 15.3296 8.67043 13.839 8.67043 12C8.67043 10.161 10.161 8.67043 12 8.67043Z"/>
-            </svg>
-          </a>
-        </div>
       </section>
 
       <!-- Lista de Links Oficiais -->
       <section class="links-stack" aria-label="Links em destaque">
 
-        <!-- Link 1: Achadinhos da Ná #3 (Card VIP em Destaque) -->
+        <!-- Link 1: Achadinhos da Ná #3 (Com Setas de Ação e Destaque) -->
         <div class="link-card card-featured" onclick="openLink('https://chat.whatsapp.com/JtIppyVDUQX6XmwEcKdgzH?mode=gi_t', event)">
-          <span class="card-badge-tag">🔥 VIP • GRUPO #3</span>
+          <span class="card-badge-tag">🔥 VIP • GRUPO #3 ➔</span>
           <img 
             src="https://ugc.production.linktr.ee/420984bc-4b91-45e7-bf02-ab0d10613363_817663376-2377454673062570-6935756174587585900-n.jpeg?io=true&size=thumbnail-stack_v1_0" 
             alt="Achadinhos da Ná #3" 
@@ -973,19 +966,16 @@
             loading="lazy"
           />
           <div class="link-content">
-            <span class="link-title">🔎 Achadinhos da Ná #3</span>
+            <span class="link-title">🔎 Achadinhos da Ná #3 ➔</span>
             <span class="link-subtitle">Grupo VIP no WhatsApp (Ofertas e Bugs)</span>
           </div>
-          <button 
-            type="button" 
-            class="link-menu-btn" 
-            aria-label="Compartilhar link Achadinhos da Ná #3"
-            onclick="triggerLinkShare('🔎 Achadinhos da Ná #3', 'https://chat.whatsapp.com/JtIppyVDUQX6XmwEcKdgzH?mode=gi_t', event)"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+          <!-- Seta de Ação em Círculo -->
+          <div class="link-arrow-circle" title="Acessar Grupo Agora" aria-label="Acessar Grupo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
-          </button>
+          </div>
         </div>
 
         <!-- Link 2: Achadinhos de Natal -->
@@ -1037,7 +1027,7 @@
 
       </section>
 
-      <!-- Rodapé com o Slogan Oficial da Arte -->
+      <!-- Rodapé com o Slogan Oficial -->
       <footer class="page-footer">
         <div class="footer-slogan">
           <span class="footer-slogan-line"></span>
@@ -1046,12 +1036,6 @@
           <span class="footer-slogan-heart">♡</span>
           <span class="footer-slogan-line"></span>
         </div>
-
-        <!-- Assinatura Deerflow Obrigatória e Sutil -->
-        <a href="https://deerflow.tech" target="_blank" rel="noopener noreferrer" class="deerflow-badge">
-          <span class="deerflow-sparkle">✦</span>
-          <span>Created By Deerflow</span>
-        </a>
       </footer>
 
     </main>
@@ -1153,7 +1137,7 @@
 
     function openLink(url, event) {
       if (event && event.target.closest('.link-menu-btn')) {
-        return; // não abre o link se clicou no menu de 3 pontinhos
+        return;
       }
       window.open(url, '_blank', 'noopener,noreferrer');
     }
