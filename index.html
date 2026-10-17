@@ -24,7 +24,10 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2351056358631994');
-    fbq('track', 'PageView');
+
+    // ID único para deduplicação perfeita entre Navegador e Servidor (CAPI)
+    window.__pageViewEventId = 'pv_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+    fbq('track', 'PageView', {}, { eventID: window.__pageViewEventId });
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2351056358631994&ev=PageView&noscript=1"
@@ -1153,17 +1156,62 @@
       url: window.location.href.startsWith("http") ? window.location.href : "https://linktr.ee/nadiapancote"
     };
 
+    // Utilitários para Meta Conversions API (CAPI)
+    function generateEventId(prefix) {
+      return (prefix || 'ev') + '_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+    }
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function sendCapiEvent(eventName, eventId, customData) {
+      try {
+        const payload = {
+          event_name: eventName,
+          event_id: eventId,
+          event_source_url: window.location.href,
+          fbp: getCookie('_fbp'),
+          fbc: getCookie('_fbc'),
+          custom_data: customData || {}
+        };
+        fetch('/api/capi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (err) {}
+    }
+
+    // Disparar PageView via CAPI com o mesmo ID do navegador para deduplicação
+    if (window.__pageViewEventId) {
+      sendCapiEvent('PageView', window.__pageViewEventId);
+    }
+
     function openLink(url, event) {
       if (event && event.target.closest('.link-menu-btn')) {
         return;
       }
-      // Disparo de evento de conversão no Meta Pixel
+
+      const leadEventId = generateEventId('lead');
+      const contentName = url.includes('chat.whatsapp.com') ? 'Grupo WhatsApp Achadinhos' : 'Clique Link';
+      const customData = {
+        content_name: contentName,
+        content_category: 'Link in Bio'
+      };
+
+      // 1. Disparo no Navegador (Pixel) com eventID
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: url.includes('chat.whatsapp.com') ? 'Grupo WhatsApp Achadinhos' : 'Clique Link',
-          content_category: 'Link in Bio'
-        });
+        fbq('track', 'Lead', customData, { eventID: leadEventId });
       }
+
+      // 2. Disparo no Servidor (CAPI) com o mesmo eventID para deduplicação
+      sendCapiEvent('Lead', leadEventId, customData);
+
       window.open(url, '_blank', 'noopener,noreferrer');
     }
 
