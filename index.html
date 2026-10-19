@@ -1023,7 +1023,7 @@
         </div>
 
         <!-- Link 3: Contato Comercial / Parcerias -->
-        <div class="link-card" onclick="openLink('https://instagram.com/nadiapancote', event)">
+        <div class="link-card" onclick="openLink('mailto:contato.nadiapancote@yahoo.com', event)">
           <div class="link-thumb-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="20" height="16" x="2" y="4" rx="2"/>
@@ -1032,13 +1032,13 @@
           </div>
           <div class="link-content">
             <span class="link-title">💌 Parcerias & Publicidade</span>
-            <span class="link-subtitle">Contato Comercial via Direct</span>
+            <span class="link-subtitle">contato.nadiapancote@yahoo.com</span>
           </div>
           <button 
             type="button" 
             class="link-menu-btn" 
             aria-label="Compartilhar Parcerias & Publicidade"
-            onclick="triggerLinkShare('💌 Parcerias & Publicidade', 'https://instagram.com/nadiapancote', event)"
+            onclick="triggerLinkShare('💌 Parcerias & Publicidade', 'mailto:contato.nadiapancote@yahoo.com', event)"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
@@ -1212,7 +1212,11 @@
       // 2. Disparo no Servidor (CAPI) com o mesmo eventID para deduplicação
       sendCapiEvent('Lead', leadEventId, customData);
 
-      window.open(url, '_blank', 'noopener,noreferrer');
+      if (url.startsWith('mailto:')) {
+        window.location.href = url;
+      } else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
     }
 
     function showToast(message) {
